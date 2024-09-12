@@ -1,0 +1,83 @@
+openapi: "3.0.3"
+info:
+  title: "Hiberus API"
+  description: "Hiberus API for Inditex"
+  contact:
+    email: speed21@outlook.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: "localhost:8080/api"
+tags:
+  - name: inditex
+    description: Petición para obtener el precio
+paths:
+  /inditex/prices:
+    get:
+      tags:
+        - inditex
+      summary: "Obtener el precio según mayor prioridad"
+      operationId: "getPrices"
+      parameters:
+        - name: "applicationDate"
+          in: "query"
+          description: "Fecha de aplicación"
+          example: "2020-06-14-10:00:00"
+          required: true
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "productId"
+          in: "query"
+          description: "Identificador de producto"
+          example: "35455"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "brandId"
+          in: "query"
+          description: "Identificador de cadena"
+          example: "1"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Price'
+        '404':
+          description: Price not found
+components:
+  schemas:
+    Price:
+      type: object
+      properties:
+        brandId:
+          type: integer
+          format: int64
+          example: 1
+        startDate:
+          type: string
+          example: "2020-06-14-00:00:00"
+        endDate:
+          type: string
+          example: "2020-12-31-23:59:59"
+        priceList:
+          type: integer
+          format: int64
+          example: 1
+        productId:
+          type: integer
+          format: int64
+          example: 35455
+        price:
+          type: number
+          format: double
+          example: 35.50
