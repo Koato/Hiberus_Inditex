@@ -1,4 +1,4 @@
-package com.kato.hiberus.application.ports.in;
+package com.kato.hiberus.domain.ports.in;
 
 import com.kato.hiberus.domain.models.Price;
 import org.springframework.stereotype.Service;

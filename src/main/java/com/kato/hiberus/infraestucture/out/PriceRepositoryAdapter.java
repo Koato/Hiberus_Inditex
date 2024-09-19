@@ -1,6 +1,6 @@
 package com.kato.hiberus.infraestucture.out;
 
-import com.kato.hiberus.application.ports.out.PriceRepositoryPort;
+import com.kato.hiberus.domain.ports.out.PriceRepositoryPort;
 import com.kato.hiberus.infraestucture.in.dto.PriceDTO;
 import com.kato.hiberus.infraestucture.out.mapper.PricePersistenceMapper;
 import com.kato.hiberus.infraestucture.out.repository.PriceRepository;

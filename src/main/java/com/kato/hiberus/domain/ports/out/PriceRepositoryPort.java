@@ -1,4 +1,4 @@
-package com.kato.hiberus.application.ports.out;
+package com.kato.hiberus.domain.ports.out;
 
 import com.kato.hiberus.infraestucture.in.dto.PriceDTO;
 import java.util.List;

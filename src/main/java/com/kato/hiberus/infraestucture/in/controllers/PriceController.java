@@ -1,6 +1,6 @@
 package com.kato.hiberus.infraestucture.in.controllers;
 
-import com.kato.hiberus.application.ports.in.RetrievePriceUseCase;
+import com.kato.hiberus.domain.ports.in.RetrievePriceUseCase;
 import com.kato.hiberus.infraestucture.in.dto.PriceDTO;
 import com.kato.hiberus.infraestucture.in.mapper.PriceMapper;
 import lombok.RequiredArgsConstructor;
