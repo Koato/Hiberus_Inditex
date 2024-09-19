@@ -1,7 +1,8 @@
-package com.kato.hiberus.infraestucture.controllers;
+package com.kato.hiberus.infraestucture.in.controllers;
 
-import com.kato.hiberus.application.services.PriceService;
-import com.kato.hiberus.domain.models.Price;
+import com.kato.hiberus.application.ports.in.RetrievePriceUseCase;
+import com.kato.hiberus.infraestucture.in.dto.PriceDTO;
+import com.kato.hiberus.infraestucture.in.mapper.PriceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -17,16 +18,18 @@ import java.time.LocalDateTime;
 @RequestMapping(value = "/api/inditex")
 public class PriceController {
 
-    private final PriceService priceService;
+    private final RetrievePriceUseCase retrievePriceUseCase;
+
+    private final PriceMapper priceMapper;
 
     @GetMapping(value = "/price")
-    public ResponseEntity<Price> getPrice(
+    public ResponseEntity<PriceDTO> getPrice(
             @RequestParam(value = "applicationDate", required = true)
             @DateTimeFormat(pattern = "yyyy-MM-dd-HH:mm:ss") LocalDateTime applicationDate,
             @RequestParam(value = "productId", required = true) Long productId,
             @RequestParam(value = "brandId", required = true) Long brandId) {
-        return priceService.getPrice(applicationDate, productId, brandId)
-                .map(price -> new ResponseEntity<>(price, HttpStatus.OK))
+        return retrievePriceUseCase.getPrice(applicationDate, productId, brandId)
+                .map(price -> new ResponseEntity<>(priceMapper.toEntity(price), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

@@ -1,8 +1,8 @@
-package com.kato.hiberus.infraestucture.entities;
+package com.kato.hiberus.infraestucture.out.entities;
 
-import com.kato.hiberus.domain.models.Price;
 import jakarta.persistence.*;
 import lombok.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,6 +19,7 @@ public class PriceEntity  implements Serializable {
     /**
      *
      */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -48,15 +49,5 @@ public class PriceEntity  implements Serializable {
     private BigDecimal price;
 
     @Column(name = "CURR", nullable = false, length = 3)
-    private String curr;
-
-    public static PriceEntity fromDomainModel(Price price) {
-        return new PriceEntity(price.getId(), price.getBrandId(), price.getStartDate(),
-                price.getEndDate(), price.getPriceList(), price.getProductId(),
-                price.getPriority(), price.getPrice(), price.getCurr());
-    }
-
-    public Price toDomainModel(){
-        return new Price(id, brandId, startDate, endDate, priceList, productId, priority, price, curr);
-    }
+    private String currency;
 }

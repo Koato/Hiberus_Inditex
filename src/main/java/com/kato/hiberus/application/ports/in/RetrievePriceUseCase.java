@@ -1,12 +1,12 @@
-package com.kato.hiberus.domain.ports.in;
+package com.kato.hiberus.application.ports.in;
 
 import com.kato.hiberus.domain.models.Price;
+import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface RetrievePriceUseCase {
 
     Optional<Price> getPrice(LocalDateTime applicationDate, Long productId, Long brandId);
-    List<Price> getAllPrices();
 }
